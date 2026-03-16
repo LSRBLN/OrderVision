@@ -1,0 +1,4 @@
+storeFile=../keystore/phoenix-gastro-vision.jks
+storePassword=change-me
+keyAlias=phoenix-gastro-vision
+keyPassword=change-me

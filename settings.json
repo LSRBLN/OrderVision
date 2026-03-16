@@ -1,0 +1,16 @@
+{
+    "dart.flutterSdkPath": "/path/to/flutter",                    // falls nötig
+    "dart.previewFlutterUiGuides": true,
+    "editor.formatOnSave": true,
+    "[dart]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+      }
+    },
+    "errorLens.addAnnotationTextPrefixes": false,
+    "errorLens.messageBackgroundMode": "line",
+    "dart.previewHotReloadOnSave": "allIfDirty",
+    "editor.inlineSuggest.enabled": true,
+    "cursor.tabAutocomplete.enabled": true                        // wichtig für den AI-Tab-Vibe
+  }

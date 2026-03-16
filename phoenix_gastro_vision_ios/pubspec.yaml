@@ -1,0 +1,90 @@
+name: orderman_flutter
+description: Professional POS system for Android tablets
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Database (Local, Offline-First)
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.2
+
+  # Cloud Sync (Optional)
+  supabase_flutter: ^2.3.4
+
+  # Printing (echte Hardware – 2026 Standard)
+  flutter_thermal_printer_pos: ^0.0.4
+
+  # Hardware & Sensors
+  flutter_nfc_kit: ^3.3.2
+  flutter_blue_plus: ^1.29.5
+  permission_handler: ^11.3.0
+  sumup: ^0.13.0
+  flutter_paypal_payment: ^1.0.8
+
+  # UI Components
+  flutter_staggered_grid_view: ^0.7.0
+  fl_chart: ^0.67.0
+  google_fonts: ^6.1.0
+  flutter_animate: ^4.3.0
+  cached_network_image: ^3.3.1
+  dynamic_color: ^1.7.0
+  go_router: ^13.2.0
+
+  # Utils
+  uuid: ^4.3.3
+  intl: ^0.19.0
+  shared_preferences: ^2.2.2
+  connectivity_plus: ^6.0.2
+  pdf: ^3.10.8
+  printing: ^5.12.0
+  http: ^1.2.1
+  logger: ^2.2.0
+  file_picker: ^8.0.0+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner: ^2.4.9
+  isar_generator: ^3.1.0+1
+  riverpod_generator: ^2.3.11
+  freezed: ^2.4.7
+  freezed_annotation: ^2.4.1
+  json_serializable: ^6.7.1
+  flutter_native_splash: ^2.4.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/gastrovision.jpeg
+    - assets/images/gastrovision.png
+
+flutter_native_splash:
+  color: '#11131A'
+  image: assets/images/gastrovision.png
+  ios: true
+  android: true
+  fullscreen: true
+  android_12:
+    color: '#11131A'
+    image: assets/images/gastrovision.png
+  web: false
+
+flutter_launcher_icons:
+  ios: true
+  android: true
+  image_path: assets/images/gastrovision.png
+  remove_alpha_ios: true
+  background_color_ios: '#11131A'
+  min_sdk_android: 24
