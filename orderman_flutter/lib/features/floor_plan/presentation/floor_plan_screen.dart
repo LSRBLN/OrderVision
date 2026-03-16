@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:orderman_flutter/core/branding/branding_config.dart';
 import 'package:orderman_flutter/features/auth/domain/user_model.dart';
 import 'package:orderman_flutter/features/floor_plan/domain/table_model.dart';
 import 'package:orderman_flutter/features/floor_plan/presentation/floor_plan_controller.dart';
@@ -10,10 +11,12 @@ class FloorPlanScreen extends ConsumerWidget {
     super.key,
     required this.user,
     required this.onLogout,
+    required this.branding,
   });
 
   final UserModel user;
   final VoidCallback onLogout;
+  final BrandingConfig branding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,6 +47,7 @@ class FloorPlanScreen extends ConsumerWidget {
                         builder: (_) => OrderScreen(
                           tableNumber: tableNumber,
                           waiterName: user.name,
+                          branding: branding,
                         ),
                       ),
                     );

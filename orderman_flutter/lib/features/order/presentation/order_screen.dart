@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:orderman_flutter/core/branding/branding_config.dart';
 import 'package:orderman_flutter/features/order/domain/menu_item.dart';
 import 'package:orderman_flutter/features/order/presentation/order_controller.dart';
 import 'package:orderman_flutter/features/payment/domain/bill_splitter.dart';
@@ -11,10 +12,12 @@ class OrderScreen extends ConsumerWidget {
     super.key,
     required this.tableNumber,
     required this.waiterName,
+    required this.branding,
   });
 
   final int tableNumber;
   final String waiterName;
+  final BrandingConfig branding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,7 +59,10 @@ class OrderScreen extends ConsumerWidget {
 
                       Navigator.of(context).push(
                         MaterialPageRoute<void>(
-                          builder: (_) => PaymentScreen(session: session),
+                          builder: (_) => PaymentScreen(
+                            session: session,
+                            branding: branding,
+                          ),
                         ),
                       );
                     },

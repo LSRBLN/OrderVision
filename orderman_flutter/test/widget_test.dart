@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:orderman_flutter/app.dart';
+import 'package:orderman_flutter/core/branding/branding_config.dart';
 import 'package:orderman_flutter/features/auth/presentation/auth_screen.dart';
 
 void main() {
@@ -8,7 +9,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const ProviderScope(
-        child: OrdermanApp(),
+        child: OrdermanApp(branding: BrandingConfig.current),
       ),
     );
 

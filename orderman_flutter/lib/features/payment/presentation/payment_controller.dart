@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:orderman_flutter/core/branding/branding_config.dart';
 import 'package:orderman_flutter/core/config/production_config.dart';
 import 'package:orderman_flutter/core/database/isar_service.dart';
-import 'package:orderman_flutter/core/theme/phoenix_branding.dart';
 import 'package:orderman_flutter/features/payment/data/nfc_payment_service.dart';
 import 'package:orderman_flutter/features/payment/data/payment_service.dart';
 import 'package:orderman_flutter/features/payment/data/paypal_payment_service.dart';
@@ -386,7 +386,7 @@ class PaymentController extends FamilyNotifier<PaymentState, PaymentSession> {
     }
   }
 
-  Future<String> completePayment() async {
+  Future<String> completePayment({required BrandingConfig branding}) async {
     final part = state.result.parts.isEmpty
         ? null
         : state.result.parts[state.selectedPartIndex];
@@ -464,10 +464,10 @@ class PaymentController extends FamilyNotifier<PaymentState, PaymentSession> {
             ),
           )
           .toList(growable: false),
-      restaurantName: PhoenixBranding.fallbackRestaurantName,
-      brandLogoAsset: PhoenixBranding.logoAssetPng,
+      restaurantName: branding.fallbackRestaurantName,
+      brandLogoAsset: branding.logoAssetPng,
       paymentMethodLabel: _methodLabel(state.method),
-      footerMessage: 'Vielen Dank für Ihren Besuch im Phoenix Gastro Vision.',
+      footerMessage: 'Vielen Dank für Ihren Besuch im ${branding.appName}.',
       tseSignatureText: tseResult.signature,
       tseTransactionId: tseResult.transactionId,
       exchangeRateInfo: 'Basiswährung EUR',
@@ -485,7 +485,7 @@ class PaymentController extends FamilyNotifier<PaymentState, PaymentSession> {
       isProcessing: false,
       lastTransactionReference: executionResult.reference,
       tseSignature: tseResult.signature,
-      tseTransactionId: tseResult.transactionId,
+tseTransactionId: tseResult.transactionId,
       tseConnectionState: TseConnectionState.connected,
       tseStatusMessage: tseResult.message,
       statusMessage: '${executionResult.message} • TSE signiert',

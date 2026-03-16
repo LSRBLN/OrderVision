@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:orderman_flutter/core/branding/branding_config.dart';
 import 'package:orderman_flutter/core/theme/phoenix_branding.dart';
 import 'package:orderman_flutter/features/payment/domain/bill_splitter.dart';
 import 'package:orderman_flutter/features/payment/presentation/payment_controller.dart';
@@ -8,9 +9,11 @@ class PaymentScreen extends ConsumerWidget {
   const PaymentScreen({
     super.key,
     required this.session,
+    required this.branding,
   });
 
   final PaymentSession session;
+  final BrandingConfig branding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,13 +22,13 @@ class PaymentScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${PhoenixBranding.appName} • Tisch ${state.tableNumber}'),
+        title: Text('${branding.appName} • Tisch ${state.tableNumber}'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _PhoenixPaymentHeader(state: state),
+            _PhoenixPaymentHeader(state: state, branding: branding),
             const SizedBox(height: 16),
             Expanded(
               child: Row(
@@ -161,8 +164,8 @@ class PaymentScreen extends ConsumerWidget {
                                 onPressed: !state.canFinalizePayment
                                     ? null
                                     : () async {
-                                        final message =
-                                            await controller.completePayment();
+                                        final message = await controller
+                                            .completePayment(branding: branding);
                                         if (!context.mounted) {
                                           return;
                                         }
@@ -230,9 +233,10 @@ class PaymentScreen extends ConsumerWidget {
 }
 
 class _PhoenixPaymentHeader extends StatelessWidget {
-  const _PhoenixPaymentHeader({required this.state});
+  const _PhoenixPaymentHeader({required this.state, required this.branding});
 
   final PaymentState state;
+  final BrandingConfig branding;
 
   @override
   Widget build(BuildContext context) {
@@ -250,7 +254,7 @@ class _PhoenixPaymentHeader extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
-                PhoenixBranding.logoAssetPng,
+                branding.logoAssetPng,
                 width: 72,
                 height: 72,
                 fit: BoxFit.cover,
@@ -262,7 +266,7 @@ class _PhoenixPaymentHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    PhoenixBranding.appName,
+                    branding.appName,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 4),
